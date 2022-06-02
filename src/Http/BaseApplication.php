@@ -174,6 +174,11 @@ abstract class BaseApplication implements
     public function bootstrap(): void
     {
         require_once $this->configDir . 'bootstrap.php';
+
+        $plugins = include $this->configDir . 'plugins.php';
+        if ($plugins) {
+            $this->plugins->addFromConfig($plugins);
+        }
     }
 
     /**
